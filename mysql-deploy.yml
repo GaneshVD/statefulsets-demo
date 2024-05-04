@@ -6,13 +6,13 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: mqsql-app
+      app: mysql-app
   serviceName: <ServiceName>
   replicas: 3
   template:
     metadata:
       labels:
-        app: mqsql-app
+        app: mysql-app
     spec:
       containers:
       - env:
@@ -31,6 +31,7 @@ spec:
       name: mysql-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
+      StorageClassName: ebs-sc-mysql
       resources:
         requests:
           storage: 1Gi
