@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-statefulset
+  namespace: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mqsql-app
+  serviceName: <ServiceName>
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: mqsql-app
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootroot
+        name: mysql
+        image: mysql:8.4
+        ports:
+        - containerPort: 3306
+          name: web
+        volumeMounts:
+        - name: mysql-data
+          mountPath: /usr//var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
