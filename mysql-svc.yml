@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: j-svc
+  name: mysql-svc-svc
   namespace: mysql
 spec:
   selector:
