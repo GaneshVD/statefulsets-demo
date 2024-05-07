@@ -30,7 +30,7 @@ spec:
   - metadata:
       name: mysql-data
     spec:
-      accessModes: [ "ReadWriteMany" ]
+      accessModes: [ "ReadWriteOnce" ]
       storageClassName: ebs-sc-mysql
       resources:
         requests:
