@@ -7,6 +7,7 @@ spec:
   selector:
     matchLabels:
       app: mysql-app
+  serviceName: mysql-svc
   replicas: 2
   template:
     metadata:
@@ -29,8 +30,8 @@ spec:
   - metadata:
       name: mysql-data
     spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: gp2
+      accessModes: [ "ReadWriteMany" ]
+      storageClassName: ebs-sc-mysql
       resources:
         requests:
           storage: 1Gi
