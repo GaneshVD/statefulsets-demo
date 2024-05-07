@@ -7,8 +7,8 @@ spec:
   selector:
     matchLabels:
       app: mysql-app
-  serviceName: <ServiceName>
-  replicas: 3
+  serviceName: mysql-svc
+  replicas: 2
   template:
     metadata:
       labels:
@@ -25,12 +25,12 @@ spec:
           name: web
         volumeMounts:
         - name: mysql-data
-          mountPath: /usr//var/lib/mysql
+          mountPath: /var/lib/mysql
   volumeClaimTemplates:
   - metadata:
       name: mysql-data
     spec:
-      accessModes: [ "ReadWriteOnce" ]
+      accessModes: [ "ReadWriteMany" ]
       storageClassName: ebs-sc-mysql
       resources:
         requests:
