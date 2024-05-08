@@ -17,7 +17,15 @@ spec:
       containers:
       - env:
         - name: MYSQL_ROOT_PASSWORD
-          value: rootroot
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: mysql-secret
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              key: startupdb
+              name: mysql-secret
         name: mysql
         image: mysql:8.4
         ports:
